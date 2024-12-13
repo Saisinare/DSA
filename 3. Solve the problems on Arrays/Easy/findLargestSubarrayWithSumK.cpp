@@ -1,7 +1,7 @@
 #include <iostream>
 #include<vector>
 #include<map>
-
+//for positive numbers only
 using namespace std;
 
 int findLargestSubArrayWithSumK(vector<int> arr,int k){
@@ -18,7 +18,9 @@ int findLargestSubArrayWithSumK(vector<int> arr,int k){
             int len = i-hashmap[rem];
             maxLen = max(len,maxLen);
         }
+        if(hashmap.find(sum) == hashmap.end()){
         hashmap[sum] = i;
+        }
     }
     return maxLen;
 }
