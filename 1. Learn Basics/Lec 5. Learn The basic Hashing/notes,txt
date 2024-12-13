@@ -1,0 +1,20 @@
+? how the worst case O(n) happens in unordered map
+    how does the map are build inside the stl 
+    1. using division method
+    -> maintain the array of 0 to 1 which each element represent linked list 
+        take mod for every number and store it in the corresponding list 
+        in sorted order
+        this is called chaining
+        supose every element in the array that you are hashing has same mod 
+        for e.g. [8,18,28,38,48,68]
+        now all the elements are stored in the 8th linked list 
+        0
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+        8-> 8->18->28->38->48->68
+        that will make TC: O(n) 

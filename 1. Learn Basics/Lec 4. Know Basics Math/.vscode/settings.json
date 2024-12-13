@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "pallindrome": "cpp",
+        "random": "cpp"
+    }
+}
