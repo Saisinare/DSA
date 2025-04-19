@@ -3,6 +3,22 @@ using namespace std;
 
 class Solution {
 public:
+    int missingNumberBrute(vector<int> nums){
+        int n = nums.size();
+        for(int i =0;i<n+1;i++){
+            int found = 0 ;
+            for(int j = 0;j<n;j++){
+                if(i == nums[j]){
+                    found = 1;
+                    break;
+                }
+            }
+            if(found==0){
+                return i;
+            }
+        }
+        return -1;
+    }
     int missingNumber(vector<int>& nums) {
         int n = nums.size();
         unordered_map<int,int> hashmap;
@@ -19,14 +35,7 @@ public:
         }
         return -1;
     }
-    int missingNumberBetter(vector<int>& nums) {
-        int sum = (nums.size()*(nums.size()+1))/2;
-        int s = 0 ;
-        for(int i = 0;i<nums.size();i++){
-            s += nums[i];
-        }
-        return sum - s;
-    }
+
     int missingNumberOptimal1(vector<int>& nums) {
         int xor1 = 0;
         int xor2 = 0;
@@ -52,8 +61,7 @@ int main() {
     
     vector<int> nums = {3, 0, 1}; // Missing number should be 2
 
-    cout << "Using HashMap Approach: " << sol.missingNumber(nums) << endl;
-    cout << "Using Summation Formula (Better): " << sol.missingNumberBetter(nums) << endl;
+    cout << "Using brute force Approach: " << sol.missingNumberBrute(nums) << endl;
     cout << "Using XOR Method (Optimal1): " << sol.missingNumberOptimal1(nums) << endl;
     cout << "Using Summation Formula (Optimal2): " << sol.missingNumberOptimal2(nums) << endl;
 
