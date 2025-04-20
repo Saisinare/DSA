@@ -29,6 +29,22 @@ public:
             return result;
     }
 
+    
+        string twoSumOptimalForVarietyOne(vector<int> &nums,int target){
+            vector<int> result;
+            sort(nums.begin(),nums.end());
+            int i = 0,j=nums.size()-1;
+            while(i<j){
+                if(nums[i]+nums[j]==target){
+                    return "YES";
+                }
+                else if(nums[i]+nums[j]>target) j--;
+                else i++;
+            }
+
+            return "NO";
+    }
+
 };
 int main() {
     vector<int> nums = {2, 7, 11, 15};  
@@ -42,6 +58,6 @@ int main() {
     } else {
         cout << "No two numbers add up to the target." << endl;
     }
-
+    cout<<sol.twoSumOptimalForVarietyOne(nums,target);
     return 0;
 }
