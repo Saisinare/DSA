@@ -20,7 +20,7 @@ public:
 };
 int main() {
     Solution sol;
-    vector<int> nums = {2, 3, -2, 4}; // Example input
+    vector<int> nums = {2, 3, -2, 4}; 
     int result = sol.maxProduct(nums);
     cout << "Maximum product subarray: " << result << endl;
     return 0;
