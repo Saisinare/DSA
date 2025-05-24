@@ -50,6 +50,11 @@
         "text_encoding": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "bitset": "cpp",
+        "ranges": "cpp",
+        "stacktrace": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp"
     }
 }
