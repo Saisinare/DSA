@@ -33,7 +33,8 @@ public:
     }
 
     //Optimal force approach with TC n^2
-
+    //if we have 2 centers then the substrin is odd if not then the string is even 
+    
     void expand(string &s,int l,int r,int &bestRight,int &bestLeft){
         while(r<s.size() && l>=0 && s[r]==s[l]){
             l--;
