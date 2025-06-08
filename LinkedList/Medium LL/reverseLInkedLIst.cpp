@@ -25,4 +25,17 @@ public:
         }
         return head;
     }
+
+     ListNode* reversing(ListNode* head){
+            if(head==nullptr || head->next==nullptr) return head;
+            ListNode* newHead = reversing(head->next);
+            ListNode* front = head->next;
+            front->next = head;
+            head->next = nullptr;
+            return newHead;
+        }
+        ListNode* recursiveReverseList(ListNode* head) {
+            return reversing(head);    
+        }
+
 };
