@@ -21,7 +21,6 @@ public:
     }
 //Better using tortuis and heir method 
 ListNode *detectCycle(ListNode *head) {
-        set<ListNode*> visited;
         ListNode* slow = head;
         ListNode* fast = head;
         while(slow!=nullptr && fast->next!=nullptr && fast->next->next!=nullptr){
@@ -38,9 +37,8 @@ ListNode *detectCycle(ListNode *head) {
         }
         return nullptr;
     }
-
+//optimal approach 
 ListNode *detectCycle(ListNode *head) {
-        set<ListNode*> visited;
         ListNode* slow = head;
         ListNode* fast = head;
         while(fast!=nullptr && fast->next!=nullptr && fast->next->next!=nullptr){
