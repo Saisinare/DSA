@@ -8,6 +8,7 @@
  */
 class Solution {
 public:
+//Brute force 
     ListNode *detectCycle(ListNode *head) {
         set<ListNode*> visited;
         ListNode* temp = head;
@@ -18,4 +19,43 @@ public:
         }
         return nullptr;
     }
+//Better using tortuis and heir method 
+ListNode *detectCycle(ListNode *head) {
+        set<ListNode*> visited;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(slow!=nullptr && fast->next!=nullptr && fast->next->next!=nullptr){
+            slow = slow ->next;
+            fast = fast ->next->next;
+            if(slow==fast){
+                slow = head;
+                while(slow!=fast){
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
+            }
+        }
+        return nullptr;
+    }
+
+ListNode *detectCycle(ListNode *head) {
+        set<ListNode*> visited;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast!=nullptr && fast->next!=nullptr && fast->next->next!=nullptr){
+            slow = slow ->next;
+            fast = fast ->next->next;
+            if(slow==fast){
+                slow = head;
+                while(slow!=fast){
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
+            }
+        }
+        return nullptr;
+    }
+
 };
