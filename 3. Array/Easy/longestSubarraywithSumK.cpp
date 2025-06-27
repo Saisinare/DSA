@@ -1,3 +1,6 @@
+#include<bits/stdc++.h>
+using namespace std;
+
 //brute force 
 class Solution {
   public:

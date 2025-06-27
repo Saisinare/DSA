@@ -1,28 +1,27 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution {
-  public:
-    int backtrack(vector<int>& arr,int sum,int targetSum,int index){
-        if(sum==targetSum) {
-            return 1;
-        }
-        if(index>=arr.size()) return 0;
-        if(sum>targetSum) return 0; 
-        
-        int ans1 = backtrack(arr,sum+arr[index],targetSum,index+1);
-        int ans2 = backtrack(arr,sum,targetSum,index+1);
-        return ans1 + ans2;
-    }
-    int isSubsetSum(vector<int>& arr, int sum) {
-        
-        int result = backtrack(arr,0,sum,0);
-        return result;
-    }
-};
+int backtrack(vector<int>& arr, int target, int sum, int index) {
+	if(sum>target){
+		return 0;
+	}
+	if(index>=arr.size()){
+	    	if(sum==target){
+		        return 1;
+	        }else return 0;
+	}
+
+	int ans1 = backtrack(arr,target,sum+arr[index],index+1);
+	int ans2 = backtrack(arr,target,sum,index+1);
+	return ans1+ans2;
+}
+
+int findWays(vector<int>& arr, int k) {
+    return backtrack(arr, k, 0, 0);
+}
+
 int main(){
     vector<int> arr = {1,2,3,4,5};
-    Solution sl = Solution();
-    cout<<sl.isSubsetSum(arr,5);
+    cout<<findWays(arr,5);
     return 0;
 }
