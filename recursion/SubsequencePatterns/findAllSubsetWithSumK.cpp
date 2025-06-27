@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {
   public:
-    void backtrack(vector<int>& arr,vector<int> current,vector<vector<int>>& result,int sum,int targetSum,int index){
+    void backtrack(vector<int>& arr,vector<int> &current,vector<vector<int>>& result,int sum,int targetSum,int index){
         if(sum==targetSum) {
             result.push_back(current);
             return;
