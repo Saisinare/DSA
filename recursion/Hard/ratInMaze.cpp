@@ -5,6 +5,7 @@ void stepForward(vector < vector < int >> & arr, int n,string directions,vector 
         return;
     }
     //left
+    //logical mistake here as making vis[y][x-1]!=0
     if(x-1>=0 && vis[y][x-1]==0 && arr[y][x-1]==1){
         vis[y][x-1] = 1;
         stepForward(arr,n,directions+'L',vis,result,x-1,y);
@@ -40,3 +41,5 @@ vector < string > searchMaze(vector < vector < int >> & arr, int n) {
     sort(result.begin(),result.end());
     return result;
 }
+
+//mistake as not marking vis = 1 in the first cell forget the a[0][0]=1 condition 
