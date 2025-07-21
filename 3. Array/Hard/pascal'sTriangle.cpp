@@ -34,3 +34,21 @@ public:
 };
 
 // O(row ^2)
+
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> ans;
+        long long num = 1;
+        rowIndex++;
+        ans.push_back(num);
+        for(int c = 1;c<rowIndex;c++){
+            num *= (rowIndex-c);
+            num /= c;
+            ans.push_back(num);
+        }
+        return ans;
+    }
+};
+
+// O(row)
