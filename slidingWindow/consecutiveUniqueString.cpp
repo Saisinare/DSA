@@ -1,3 +1,5 @@
+//brute force will be checking the element using double for loop 
+
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
