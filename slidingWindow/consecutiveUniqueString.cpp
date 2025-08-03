@@ -7,7 +7,7 @@ public:
         int maxlen = 0;
         while(r<size){
             if(arr[s[r]]!=-1){
-                if(r>=l){
+                if(arr[s[r]]>=l){
                     l = arr[s[r]]+1;
                 }
             }
