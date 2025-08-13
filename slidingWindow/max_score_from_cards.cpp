@@ -18,3 +18,8 @@ public:
         return maxPoints;
     }
 };
+// O(N)
+// O (1)
+
+//edge case : 
+//you have to set the maxPoints initially at the left sum as if you not then you are going to miss the case where maximum points are the first k elements from the left 
