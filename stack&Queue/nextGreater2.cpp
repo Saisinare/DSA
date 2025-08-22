@@ -43,3 +43,45 @@ public:
         return ans;
     }
 };
+
+//optimal Solution
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n,-1);
+        stack<int> st;
+        for(int i =2*n-1;i>=0;i--){
+            int idx = i%n;
+            while(!st.empty() && nums[idx]>=nums[st.top()]){
+                st.pop();
+            }
+            if(!st.empty()){
+                ans[idx] = nums[st.top()];
+            }
+            st.push(idx);
+        }
+        return ans;
+    }
+};
+
+
+// Approach (Monotonic Stack):
+// 1. We traverse the array in reverse order twice (2*n - 1 → 0) to simulate circular behavior.
+// 2. We use a monotonic decreasing stack that stores indices of elements. 
+//    - While the stack is not empty and nums[idx] >= nums[st.top()], we pop from stack.
+//    - This ensures stack always contains indices of elements in decreasing order of their values.
+// 3. If the stack is not empty after popping, the top element of the stack is the Next Greater Element.
+//    Otherwise, we leave -1 (default value).
+// 4. Push the current index onto the stack for future elements.
+//
+// Why reverse traversal?
+// - We traverse backwards so that when we process an element, its "future" (right side elements) 
+//   are already considered and stored in stack, allowing efficient lookup.
+//
+// Time Complexity:
+// - Each element is pushed and popped from the stack at most once → O(n).
+// - We traverse 2n elements in the loop → O(2n) ≈ O(n).
+// Overall: O(n)
+// Space Complexity: O(n) for the stack + O(n) for answer vector → O(n)
