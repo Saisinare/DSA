@@ -26,3 +26,62 @@ public:
 
 //T.C. O(N square)
 //S.C. O(1)
+
+
+
+//Optimal approach 
+    /*
+    1. find the previous smaller element 
+    2. find the next smaller element 
+    3. multiply both with num [i]
+    5. add it to the sum 
+    reutrn sum 
+    */
+class Solution {
+public:
+    const int MOD = 1e9 + 7;
+
+    // Previous Smaller Element: distance to left
+    vector<int> prevSmaller(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> left(n);
+        stack<int> st;
+        for (int i = 0; i < n; i++) {
+            while (!st.empty() && arr[st.top()] > arr[i]) st.pop();
+            left[i] = st.empty() ? i + 1 : i - st.top();
+            st.push(i);
+        }
+        return left;
+    }
+
+    // Next Smaller Element: distance to right
+    vector<int> nextSmaller(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> right(n);
+        stack<int> st;
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.empty() && arr[st.top()] >= arr[i]) st.pop();
+            right[i] = st.empty() ? n - i : st.top() - i;
+            st.push(i);
+        }
+        return right;
+    }
+
+    int sumSubarrayMins(vector<int>& arr) {
+        vector<int> nse = nextSmaller(arr);
+        vector<int> pse = prevSmaller(arr);
+        long long sum = 0 , mod = 1e9+7;
+        for(int i =0;i<arr.size();i++){
+            long long left = pse[i];
+            long long right = nse[i];
+            long long val = arr[i];
+
+            long long contribute = ((left * right) % MOD * val) % MOD;
+            sum = (sum + contribute) % MOD;
+        }
+        return sum;
+    }
+};
+
+//O(n)
+//O(n)
