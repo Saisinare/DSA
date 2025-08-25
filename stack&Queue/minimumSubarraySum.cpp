@@ -85,3 +85,108 @@ public:
 
 //O(n)
 //O(n)
+
+
+
+//Optimal Solution
+    /*
+        1. Find minimum and maximum element sum using monotonic stack 
+        2. return maximum - minimum 
+
+        T.C.: O(5N)+O(5N) = O(10N) = O(N) 
+        S.C.: O(N);
+    */
+class Solution {
+public:
+
+
+        vector<int> prevSmaller(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> left(n);
+        stack<int> st;
+        for (int i = 0; i < n; i++) {
+            while (!st.empty() && arr[st.top()] > arr[i]) st.pop();
+            left[i] = st.empty() ? i + 1 : i - st.top();
+            st.push(i);
+        }
+        return left;
+    }
+
+    // Next Smaller Element: distance to right
+    vector<int> nextSmaller(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> right(n);
+        stack<int> st;
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.empty() && arr[st.top()] >= arr[i]) st.pop();
+            right[i] = st.empty() ? n - i : st.top() - i;
+            st.push(i);
+        }
+        return right;
+    }
+
+    long long sumSubarrayMins(vector<int>& arr) {
+        vector<int> nse = nextSmaller(arr);
+        vector<int> pse = prevSmaller(arr);
+        long long sum = 0 , mod = 1e9+7;
+        for(int i =0;i<arr.size();i++){
+            long long left = pse[i];
+            long long right = nse[i];
+            long long val = arr[i];
+
+            long long contribute = ((left * right) * val);
+            sum = (sum + contribute);
+        }
+        return sum;
+    }
+
+
+
+        vector<int> prevGreater(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> left(n);
+        stack<int> st;
+        for (int i = 0; i < n; i++) {
+            while (!st.empty() && arr[st.top()] < arr[i]) st.pop();
+            left[i] = st.empty() ? i + 1 : i - st.top();
+            st.push(i);
+        }
+        return left;
+    }
+
+    // Next Smaller Element: distance to right
+    vector<int> nextGreater(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> right(n);
+        stack<int> st;
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.empty() && arr[st.top()] <= arr[i]) st.pop();
+            right[i] = st.empty() ? n - i : st.top() - i;
+            st.push(i);
+        }
+        return right;
+    }
+
+    long long sumSubarrayMax(vector<int>& arr) {
+        vector<int> nse = nextGreater(arr);
+        vector<int> pse = prevGreater(arr);
+        long long sum = 0 , mod = 1e9+7;
+        for(int i =0;i<arr.size();i++){
+            long long left = pse[i];
+            long long right = nse[i];
+            long long val = arr[i];
+
+            long long contribute = ((left * right) * val);
+            sum = (sum + contribute);
+        }
+        return sum;
+    }
+    
+
+    long long subArrayRanges(vector<int>& nums) {
+        return (long long)sumSubarrayMax(nums) - sumSubarrayMins(nums); 
+    }
+};
+
+//O(N^2) T.C
+//O(1) S.C.
