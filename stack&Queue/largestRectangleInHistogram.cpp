@@ -55,42 +55,37 @@ public:
 
 //Optimal Solution 
     /*
-        We scan bars left to right, and keep a stack of indices of bars in increasing height order.
+        Keep a stack to store indices of bars in increasing height order.
 
-When we see a bar shorter than the stack’s top, that means the taller bar at top can’t extend further right.
+        Go through each bar one by one.
 
-We pop that bar, and calculate its largest rectangle using:
+        If the current bar is smaller than the stack’s top bar, pop from stack (the taller bar ends here).
 
-height = popped bar’s height
+        For the popped bar → calculate area = height × width, update maxi.
 
-width = distance between current index and new stack top.
-
-Keep updating the maximum area found so far.
-
-At the end (dummy 0 bar), we pop everything left in stack to ensure all bars are processed.
+        After processing, push the current index in the stack and continue.
     */
+
 class Solution {
 public:
 
     int largestRectangleArea(vector<int>& heights) {
-        int n = heights.size();
-        vector<int> ans (n,-1);
         int maxi = 0 ;
         stack<int> st;
+        int n = heights.size();
         for(int i =0;i<=n;i++){
-            int currentHeight = (i==n)?0:heights[i];
+            int currentHeight = (i==n)? 0:heights[i];
             while(!st.empty() && heights[st.top()]>= currentHeight){
                 int tp = st.top();
                 st.pop();
-                int hi = heights[tp];
-
-                int wi;
+                int height = heights[tp];
+                int width = 0 ;
                 if(st.empty()){
-                    wi = i; 
+                    width = i;
                 }else{
-                    wi = (i  - st.top()-1);
+                    width = i - st.top() - 1;
                 }
-                maxi = max(maxi,hi*wi);
+                maxi = max(maxi,height*width);
             }
             st.push(i);
         }
