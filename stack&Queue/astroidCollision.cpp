@@ -1,3 +1,5 @@
+#include<bits/stdc++.h>
+#using namespace std;
 //Direct Optimal 
     /*
         1. make an stack or an array with ans 
