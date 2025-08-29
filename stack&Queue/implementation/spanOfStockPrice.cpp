@@ -29,3 +29,32 @@ public:
 
 //Time complexity : O(n^2)
 //Space Ccomplextiy: O(N)
+
+
+//optimals solution 
+    /*
+        1. use monotonic decreasing stack 
+        2. we apply the logic of the previous greater element 
+        3. subtract the current index from the pge and then return this result 
+    */
+
+class StockSpanner {
+public:
+
+    stack<pair<int,int>> st;
+    int idx = -1;
+    StockSpanner() {
+        idx = -1;
+        st = stack<pair<int,int>>();
+    }
+    
+    int next(int price) {
+        idx++;
+        while(!st.empty() && st.top().first <= price){
+                st.pop();
+        }
+        int ans = idx - ((st.empty())?  -1 : st.top().second);
+        st.push({price,idx}); 
+        return ans;
+    }
+};
