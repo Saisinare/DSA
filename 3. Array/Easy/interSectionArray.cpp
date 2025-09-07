@@ -28,7 +28,7 @@ vector<int> findArrayIntersectionOptimal(vector<int> &arr1, int n, vector<int> &
 	int j = 0;
 
 	while(i<n && j<m){
-		if(arr1[i] < arr2[j]){
+		if(arr1[i] < arr2[j]){	
 			i++;
 		}else if(arr1[i] > arr2[j]){
 			j++;
@@ -41,6 +41,31 @@ vector<int> findArrayIntersectionOptimal(vector<int> &arr1, int n, vector<int> &
 return result;
 
 }
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2)    {
+
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        int n = nums1.size();
+        int i = 0 ;
+        int j = 0 ;
+
+        vector<int> res;
+        while(i < nums1.size() && j< nums2.size()){
+            if(nums1[i]<nums2[j]) i++;
+            else if(nums1[i]>nums2[j]) j++;
+            else {
+                if(res.size() == 0 || nums1[i] != res.back())
+                    res.push_back(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+        return res;
+    }
+};
 
 
 int main(){
