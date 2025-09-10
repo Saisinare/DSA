@@ -35,6 +35,9 @@ class Solution {
             if(mapp.find(res)!=mapp.end()){
                 maxi = max(maxi,i-mapp[res]);
             }
+
+            //we are not updating the sum with the new index cause we want longest subarray 
+            //if the prefix sum of i and j are the same that means the sum between them are 0 and if we update the prefix[sum] then we don't get the longest one cause we are missing this indices where sum is 0 
             if(mapp.find(sum)==mapp.end()){
                 mapp[sum] = i;
             }
