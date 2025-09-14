@@ -10,7 +10,7 @@ class Solution {
 public:
     int height(TreeNode* root){
         if(root == nullptr) return 0;
-        int leftHeight = height(root->left);
+        int leftHeight = height(root->left);w
         int rightHeight = height(root->right);
 
         return max(leftHeight,rightHeight)+1;
