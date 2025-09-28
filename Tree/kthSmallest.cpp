@@ -18,3 +18,36 @@ public:
         return final[k-1];
     }
 };
+
+
+// optimal approach
+// we can do the inorder traversal of the tree and keep a count of the nodes
+//recursively go to the left subtree
+
+
+
+class Solution {
+public:
+    //inorder traverse through the BST 
+    //keep the count increasing at each level 
+    //return kth node  
+    int result = -1;
+    int count = 0;
+    
+    void traverse(TreeNode* root, int k){
+        if(root==nullptr || result!=-1) return;
+        traverse(root->left,k);
+
+        count++;
+        if(count==k){
+            result = root->val;
+            return;
+        }
+
+        traverse(root->right,k);
+    }
+    int kthSmallest(TreeNode* root,int k) {
+        traverse(root,k);
+        return result;
+    }
+};
