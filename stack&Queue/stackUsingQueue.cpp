@@ -1,3 +1,7 @@
+// Time Complexity:
+//   push: O(n)
+//   pop, top, empty: O(1)
+// Space Complexity: O(n), where n is the number of elements in the stack.
 class MyStack {
 public:
     queue<int> q1;

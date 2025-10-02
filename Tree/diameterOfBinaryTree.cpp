@@ -11,6 +11,7 @@ public:
     int height(TreeNode* root){
         if(root == nullptr) return 0;
         int leftHeight = height(root->left);w
+// Time Complexity: O(n), where n is the number of nodes in the tree.
         int rightHeight = height(root->right);
 
         return max(leftHeight,rightHeight)+1;

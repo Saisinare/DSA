@@ -1,3 +1,7 @@
+// Time Complexity:
+//   push: O(n)
+//   pop, peek: O(1)
+// Space Complexity: O(n), where n is the number of elements in the queue.
 class MyQueue {
 public:
     stack<int> s1;  // Primary stack to store queue elements

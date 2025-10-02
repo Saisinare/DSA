@@ -1,4 +1,8 @@
 
+// Time Complexity: O(m * n) where m and n are the number of nodes in root and subRoot respectively.
+// Space Complexity: O(h) where h is the height of the tree due to recursion stack.
+// Time Complexity: O(m * n) where m and n are the number of nodes in root and subRoot respectively.
+// Space Complexity: O(h) where h is the height of the tree due to recursion stack.
 class Solution {
 public:
     bool isSame(TreeNode* root, TreeNode* subRoot){

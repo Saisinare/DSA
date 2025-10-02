@@ -1,3 +1,5 @@
+// Time Complexity: O(n), where n is the number of nodes in the tree.
+// Space Complexity: O(w), where w is the maximum width of the tree (max number of nodes at any level).
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -9,6 +11,8 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+// Time Complexity: O(n), where n is the number of nodes in the tree.
+// Space Complexity: O(w), where w is the maximum width of the tree (max number of nodes at any level).
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {

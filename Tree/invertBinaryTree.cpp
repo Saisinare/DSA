@@ -1,6 +1,8 @@
 //swap the right and left node of root 
 //repeat this until the end of tree using recursion 
 
+// Time Complexity: O(n), where n is the number of nodes in the tree.
+// Space Complexity: O(h), where h is the height of the tree (recursion stack).
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {

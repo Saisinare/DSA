@@ -1,3 +1,5 @@
+// Time Complexity: O(n), where n is the number of nodes in the tree.
+// Space Complexity: O(h), where h is the height of the tree (recursion stack).
 /**
  * Definition for a binary tree node.
  * struct TreeNode {

@@ -1,3 +1,5 @@
+// Time Complexity: O(n^2), where n is the size of the input array.
+// Space Complexity: O(1).
 //brute force 
     /*
         1. Generate all of subarrays using nested loop

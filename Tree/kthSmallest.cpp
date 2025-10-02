@@ -1,4 +1,7 @@
 
+
+// Time Complexity: O(n) where n is the number of nodes in the tree.
+// Space Complexity: O(n) for storing node values in a vector or recursion stack.
 class Solution {
 public:
 //travers through the tree 

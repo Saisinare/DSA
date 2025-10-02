@@ -1,3 +1,5 @@
+# Time Complexity: O(n), where n is the size of the input array.
+# Space Complexity: O(n), for the stack and result array.
 #include <bits/stdc++.h>
 using namespace std;
 

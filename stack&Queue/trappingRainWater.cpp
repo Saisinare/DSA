@@ -1,3 +1,5 @@
+# Time Complexity: O(n^2) for brute force approach.
+# Space Complexity: O(1).
 #include<bits/stdc++.h>
 using namespace std;
 
