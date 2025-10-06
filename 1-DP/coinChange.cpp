@@ -50,3 +50,6 @@ public:
         return dp[amount];
     }
 };
+
+//T.C: O(n*amount) where n is the number of coins
+//S.C: O(amount) for the dp array
