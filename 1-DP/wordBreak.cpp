@@ -16,5 +16,4 @@ bool wordBreak(string s, vector<string>& wordDict) {
     }
     return dp[n];
 }
-
 };
