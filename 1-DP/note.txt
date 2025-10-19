@@ -1,0 +1,7 @@
+Solving anything buy brute force recursion has a problem 
+It called overlapping subproblem 
+In the recursion tree there might be some redundant calls 
+
+This problem is solved by the memoization and tabulation technique
+Memoization is top down approach
+Tabulation is bottom up approach
