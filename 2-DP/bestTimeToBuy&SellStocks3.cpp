@@ -128,8 +128,8 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        vector<vector<int>> ahead (2,vector<int>(3,-1));
-        vector<vector<int>> cur (2,vector<int>(3,-1));
+        vector<vector<int>> ahead (2,vector<int>(3,0));
+        vector<vector<int>> cur (2,vector<int>(3,0));
 
 
         //now fill the rest of the array 
@@ -151,7 +151,7 @@ public:
             }
                 ahead = cur;
         }
-        return ahead[1][0]+1;
+        return ahead[1][0];
     }
 };
 
