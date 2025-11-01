@@ -155,3 +155,5 @@ public:
     }
 };
 
+
+//for final level optimization rather than using the array of cur and ahead use variables it does not affects the TC or SC but it will result in the higher runtime in the leetcode submissions 
