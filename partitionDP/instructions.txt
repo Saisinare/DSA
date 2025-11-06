@@ -1,0 +1,13 @@
+Level 1: Noob and just started 
+        Use the partition DP when : 
+            Question ask to Split problems into parts 
+
+Level 2: intermediate level (solved 5 questions)
+
+
+Steps: 
+    1. start with the entire block 
+    2. try out all partitions 
+    3. find the thing with condition (minimal maximal etc) 
+        
+        
