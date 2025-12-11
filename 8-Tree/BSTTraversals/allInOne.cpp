@@ -1,5 +1,8 @@
-/*
-    Following is Binary Tree Node structure:
+
+
+#include <bits/stdc++.h>
+using namespace std;    
+
     class TreeNode
     {
     public:
@@ -9,7 +12,6 @@
         TreeNode(int x) : data(x), left(NULL), right(NULL) {}
         TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
     };
-*/
 vector<vector<int>> getTreeTraversal(TreeNode *root){
     if(root==nullptr) return {};
     vector<int> pre,post,inorder;
