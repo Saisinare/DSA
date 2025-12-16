@@ -25,6 +25,10 @@ public:
         }
         if(mid<right){
             root->right = splitTree(preorder,inorderIndexMap,rootIndex+mid-left+1,mid+1,right);
+            //rootIndex+1+(mid-left)
+            //mid-left is the number of nodes in the left subtree
+            //+1 for the root node
+            //so we reach the start of the right subtree in the preorder array
         }
         return root;
     }
