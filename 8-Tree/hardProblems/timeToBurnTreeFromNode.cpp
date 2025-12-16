@@ -2,6 +2,18 @@
 //radical means we traverse to each sided possible (left, right, and parent)
 //as the adjucent nodes burn at every minute we increase the counter of minutes whenever we traverse all the adjucent nodes 
 //now we can easily travel to the left and right but for parent we don't have pointer so we have to firstly sort that 
+#include <bits/stdc++.h>
+using namespace std;    
+
+  struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode() : val(0), left(nullptr), right(nullptr) {}
+      TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+  };
+ 
 class Solution {
     
 public:
