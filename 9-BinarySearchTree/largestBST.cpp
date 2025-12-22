@@ -1,4 +1,5 @@
-/* Tree node structure  used in the program
+#include <bits/stdc++.h>
+using namespace std;
 
 struct Node {
     int data;
@@ -7,9 +8,9 @@ struct Node {
 
     Node(int val) {
         data = val;
-        left = right = NULL;
+        left = right = nullptr;
     }
-};*/
+};
 
 class Solution {
   public:
