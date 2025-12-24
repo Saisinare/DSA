@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//brute force approach
+//getting TLE on large test cases 
 class Solution {
 public:
     void traverse(vector<vector<int>>& mat,int m,int n,pair<int,int> node){
@@ -78,3 +79,47 @@ public:
         return mat;
     }
 };
+
+//TC: O((m*n)^2) SC: O(m*n) for visited array and queue
+
+//optimal approach
+class Solution {
+public:
+    void bfs(vector<vector<int>>& mat,queue<pair<int,int>>& q,int m,int n){
+        vector<int> dx = {1,-1,0,0};
+        vector<int> dy = {0,0,1,-1};
+
+        while(!q.empty()){
+            auto front = q.front();
+            q.pop();
+            int i = front.first;
+            int j = front.second;
+
+            for(int k =0;k<4;k++){
+                int ni = i + dx[k];
+                int nj = j + dy[k];
+                if(ni>=0 && ni<m && nj>=0 && nj<n && mat[ni][nj]==-1){
+                    mat[ni][nj] = mat[i][j]+1;
+                    q.push({ni,nj});
+                }
+            }
+
+        }
+    }
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        int m = mat.size();
+        int n = mat[0].size();
+        queue<pair<int,int>> q;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(mat[i][j]==0) q.push({i,j});
+                else mat[i][j] = -1;
+            }
+        }
+        bfs(mat,q,m,n);
+        return mat;
+    }
+};
+
+//TC :  O( 2x(mxn) ) == O(mxn) as we are traversing every node 
+//SC :  O(mxn) as in the worst case if their is only single one our queue will have all nodes-1 which is something mxn
