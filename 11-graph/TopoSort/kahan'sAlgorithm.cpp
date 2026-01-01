@@ -1,4 +1,7 @@
-    class Solution {
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
       public:
         vector<int> topoSort(int V, vector<vector<int>>& edges) {
             // code here
@@ -17,7 +20,7 @@
         	}
         
         	vector<int> ans;
-        
+			
         	while(!q.empty()){
         		int front = q.front();
         		q.pop();
