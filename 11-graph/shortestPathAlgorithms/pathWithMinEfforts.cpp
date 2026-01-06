@@ -40,4 +40,59 @@ public:
         }
         return efforts[0][0];
     }
-};
+ };
+// Reverse Dijkstra is the same as Dijkstra’s algorithm, but it starts from the destination instead of the source.
+// It works here because the grid is undirected.
+
+// Each cell stores the minimum effort needed to reach the destination, where effort means the maximum height difference on the path.
+
+// When moving to a neighbor, the new effort is calculated as:
+
+// newEffort = max(currentEffort, heightDifference)
+
+
+// A min-priority queue is used to always expand the cell with the smallest effort first.
+
+// Complexity
+
+// Time: O(n × m × log(n × m))
+
+// Space: O(n × m)
+
+
+class Solution {
+public:
+    int minimumEffortPath(vector<vector<int>>& heights) {
+
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+
+        int n=heights.size();
+        int m=heights[0].size();
+        vector<int>drow={-1,1,0,0};
+        vector<int>dcol={0,0,-1,1};
+
+        vector<vector<int>>dist(n,vector<int>(m,1e9));
+        pq.push({0,{0,0}});dist[0][0]=0;
+        while(!pq.empty()){
+            auto it=pq.top();pq.pop();
+            int diff=it.first;
+            int r=it.second.first,c=it.second.second;
+            if(r==n-1 && c==m-1) return dist[r][c];
+
+            for(int i=0;i<4;i++){
+                int nrow=r+drow[i];
+                int ncol=c+dcol[i];
+
+                if(ncol>=0 && nrow>=0 && ncol<m && nrow<n){
+                    int newEff=max(abs(heights[r][c]-heights[nrow][ncol]),diff);
+                    if(newEff<dist[nrow][ncol]){
+                        pq.push({newEff,{nrow,ncol}});
+                        dist[nrow][ncol]=newEff;
+                    }
+                }
+            }
+        }
+        return dist[n-1][m-1];
+        
+    }
+}; //normal dijkstra 
