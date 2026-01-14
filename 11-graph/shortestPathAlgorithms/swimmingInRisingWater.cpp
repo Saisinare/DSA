@@ -1,3 +1,52 @@
+//brute force 
+class Solution {
+public: 
+    bool dfs(int t,vector<vector<int>>& grid,int n){
+        queue<pair<int,int>> q;
+        vector<vector<bool>> vis(n,vector<bool>(n,false));
+        q.push({0,0});
+        vis[0][0] = true;
+        vector<pair<int,int>> dxy = {{1,0},{0,1},{-1,0},{0,-1}};
+        while(!q.empty()){
+            auto [r,c] = q.front();
+            q.pop();
+
+            if(r >= n-1 && c >= n-1) return true;
+
+            for(auto& it:dxy){
+                int nr = r + it.first;
+                int nc = c + it.second;
+                if(nr>=0 && nr<n && nc>=0 && nc <n && !vis[nr][nc] && grid[nr][nc] <= t ){
+                    vis[nr][nc] = true;
+                    q.push({nr,nc});
+                }
+            }
+        }
+        return false;
+    }
+    int swimInWater(vector<vector<int>>& grid) {
+        int n = grid.size();
+        //find the maximum height 
+        int maxi = INT_MIN;
+        for(int i =0;i<n;i++){
+            for(int j=0;j<n;j++){
+                maxi = max(maxi,grid[i][j]);
+            }
+        }
+        for(int t =0;t<maxi;t++){
+            if(grid[0][0] > t || grid[n-1][n-1] > t) continue; 
+            if(dfs(t,grid,n)) return t; 
+        }
+        return maxi;
+    }
+};
+
+// The total time complexity is determined by the nested nature of the search and the traversal.
+
+// Time Complexity : Outer loop n^2 dfs requires n^2 inside this loop hence n^4 
+// Space Complexity : O(N^2) for visited array and queue in worst case can have all nodes
+
+//most optimal solution 
 using P = pair<int,pair<int,int>>;
 class Solution {
 public: 
