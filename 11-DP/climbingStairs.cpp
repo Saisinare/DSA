@@ -26,17 +26,50 @@
 // ways[i] = ways[i-1] + ways[i-2]
 
 
+//you can reach n by only 2 paths 
+//1. from n-1 or n-2 so their is no other path 
+// and if n == 0 or n ==1 then their is only one path to reach it 
+/*
+class Solution {
+public:
+    int solve(int n,vector<int>& dp){
+        //base case 
+        if(n==0 || n==1) return 1;
+        
+        if(dp[n]!=-1) return dp[n];
+
+        return dp[n] = solve(n-1,dp) + solve(n-2,dp);
+
+    }
+    int climbStairs(int n) {
+        vector<int> dp(n+1,-1);
+        return solve(n,dp);
+    }
+};
+*/
+//memoization
+// class Solution {
+// public:
+//     int climbStairs(int n) {
+//         vector<int> dp(n+1,1);
+//         if(n<=1) return 1;
+//         for(int i = 2 ;i<= n ;i++){
+//             dp[i] = dp[i-1] + dp[i-2];
+//         }
+//         return dp[n];
+//     }
+// };
+//as our answer is just dependent on past 2 variables we just need that 
 class Solution {
 public:
     int climbStairs(int n) {
-        int one = 1 ;
-        int two = 1 ;
-        for(int i =0;i<n-1;i++){
-            // the first step (1) is already counted in initialization (one = 1, two = 1), so you only need n-1 updates to reach step n. ✅ 
-            int temp = one;
-            one = one + two;
-            two = temp;
+        int n1 = 1, n2 =1;
+        if(n<=1) return 1;
+        for(int i = 2 ;i<= n ;i++){
+            int sum  = n1 + n2;
+            n1 = n2;
+            n2 = sum;
         }
-        return one;
+        return n2;
     }
 };
