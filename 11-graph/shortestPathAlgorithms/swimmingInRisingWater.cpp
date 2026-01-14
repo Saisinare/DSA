@@ -42,3 +42,5 @@ public:
 //Time Complexity : Nodes = N^2 work per node log n^2 as every push pop operation requires log k in this case k = n^2 so we requires log n^2 operations so final time complexity will be 
 // n^2 * log n^2
 //Space Complexity : O(N^2) for visited array and priority queue in worst case can have all nodes
+
+//this can also solved by the (binary search on bfs dfs / kruscal's algorithm with disjoint set union)
