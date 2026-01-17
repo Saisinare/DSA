@@ -1,38 +1,6 @@
 class Solution {
   public:
     void dfs(int V, vector<vector<int>>& graph,int node,vector<bool>& visited,stack<int>& st){
-        // try to push node here in stack (get unexpected output)  
-        // why ?? 
-        // if we insert it here the order where we must insert u before v when u->v 
-        // first i think that i will follow this preorder insertion approach and 
-        // then reverse the final answer which will produce a correct order 
-        // but reversal cannot correct early insertion violation 
-        /*
-        e.g.:  
-            1 → 0
-            2 → 0
-        proper order: 
-            1 2 0
-            2 1 0
-        
-        what actully happens?  
-        dfs(0):
-         push(0)
-        
-        dfs(1):
-          push(1)
-        
-        dfs(2):
-          push(2)
-
-        2
-        1   
-        0
-        
-        ans = 0 1 2 which is wrong 
-
-        
-        */
         visited[node] = true;
 
         for(auto& it: graph[node]){
