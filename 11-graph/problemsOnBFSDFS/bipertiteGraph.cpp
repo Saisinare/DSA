@@ -44,3 +44,46 @@ public:
         return true;
     }
 };
+
+
+class Solution{
+public:
+//basic idea is if we can divide our graph into two parts 
+//and every node in the adj connects set a to the set b means 2 adj nodes should be int he different sets 
+//lets consider 2 different sets 0 and 1 
+//if we can divide each node in the edges in 0 and 1 then the graph is bipertite 
+//their are two conditions either we have loop in graph or not have any loop 
+//if their is the loop then graph is only bipertite if the number of nodes in loop is even 
+    bool bfs(int start,vector<int> adj[],vector<int>& color){
+        queue<int> q;
+        color[start] = 0;
+        q.push(start);
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            for(int ele:adj[node]){
+                if(color[ele] == -1){
+                    q.push(ele);
+                    if(color[node] == 0){
+                        color[ele] = 1;
+                    }else if(color[node] == 1){
+                        color[ele] = 0;
+                    }
+                }else{
+                    if(color[ele] == color[node]) return false;
+                }
+            }
+        }
+        return true;
+    }
+    bool isBipartite(int V, vector<int> adj[])  {
+        
+        vector<int> color(V,-1);
+        for(int i =0;i<V;i++){
+            if(color[i]==-1){
+                if(!bfs(i,adj,color)) return false;
+            }
+        }
+        return true;
+    }
+};
