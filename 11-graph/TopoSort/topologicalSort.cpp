@@ -1,35 +1,36 @@
-class Solution {
-  public:
-    void dfs(int V, vector<vector<int>>& graph,int node,vector<bool>& visited,stack<int>& st){
-        visited[node] = true;
+// Do a bfs on every node 
+// Insert this node in stack when we complete visit to every node
+// Now pop this element out one by one and insert it in the ans vector  
+#include <bits/stdc++.h>
+using namespace std;
 
-        for(auto& it: graph[node]){
-            if(!visited[it]){
-                dfs(V,graph,it,visited,st);
+class Solution{
+public:
+    void topo(int node, vector<int> adj[], vector<bool>& visited,stack<int>& st){
+            visited[node] = true;
+            for(int ele:adj[node]){
+                if(!visited[ele]){
+                    visited[ele] = true;
+                    topo(ele,adj,visited,st);
+                }
             }
-        }
-        st.push(node);
+            st.push(node);
     }
-    vector<int> topoSort(int V, vector<vector<int>>& edges) {
-        // code here
-        vector<vector<int>> graph(V);
+    vector<int> topoSort(int V, vector<int> adj[]){
+        vector<int> ans;
         vector<bool> visited(V,false);
         stack<int> st;
-        
-        for(auto& i: edges){
-            graph[i[0]].push_back(i[1]);
-        }
-        
-        for(int i=0;i<V;i++){
+        for(int i =0;i<V;i++){
             if(!visited[i]){
-                dfs(V,graph,i,visited,st);
+                topo(i,adj,visited,st);
             }
         }
-        vector<int> ans;
+
         while(!st.empty()){
             ans.push_back(st.top());
             st.pop();
         }
         return ans;
+
     }
 };
