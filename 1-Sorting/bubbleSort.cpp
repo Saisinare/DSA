@@ -2,24 +2,23 @@
 #include <vector>
 using namespace std;
 class Solution {
-  public:
-    void bubbleSort(vector<int>& arr) {
-        for(int i=arr.size()-1;i>=0;i--){
-        int isSwap = 0;
-            for(int j=i;j>arr.size()-1-i;j--){
-                if(arr[j-1]>arr[j]){
-                    isSwap = 1;
-                    int temp = arr[j];
-                    arr[j] = arr[j-1];
-                    arr[j-1] = temp;
-                }
+public:
+    vector<int> bubbleSort(vector<int>& nums) {
+        int n = nums.size();
+        for(int i =0 ;i<n;i++){
+            bool swapped = false;
+            for(int j = 0;j<n-i-1;j++){
+                if(nums[j]>nums[j+1]){
+                    swapped = true;
+                    swap(nums[j],nums[j+1]);
+                } 
             }
-            if(isSwap == 0){
-                break;
-            }
+            if(!swapped) return nums;
         }
+        return nums;
     }
 };
+
 
 int main(){
     vector<int> arr = {4,1,3,9,7};
