@@ -1,41 +1,32 @@
-#include<bits/stdc++.h>
-using namespace std;
-
 class Solution {
-public:
-    vector<int> rowAndMaximumOnes(vector<vector<int>>& mat) {
-        vector<int> result;
-        int max_count = -1;
-        for(int i =0;i<mat.size();i++){
-            int count = 0;
-            for(int j =0;j<mat[i].size();j++){
-                if(mat[i][j]==1){
-                    count++;
-                }
-            }
-            if(count>max_count){
-                result.clear();
-                result.push_back(i);
-                result.push_back(count);
-                max_count = count;
-            }else if(count==max_count){
-                result[1] = max_count;
-            }
-        }
-    return result;
+  public:   
+  int findNoOfOnes(vector<int> row){
+    int low = 0;
+    int high = row.size()-1;
+    int firsOnetIdx = row.size() ;
+    while(low <= high){
+      int mid = low + (high - low )/2;
+      if(row[mid] == 1){
+        firsOnetIdx = mid;
+        high = mid - 1;
+      }else{
+        low = mid + 1;
+      }
     }
+    return row.size() - firsOnetIdx;
+  }
+  int rowWithMax1s(vector < vector < int >> & mat) {
+    //Find the first occurence of one in every row compare subtract from its length compare and undate maxi 
+    int maxOnes = 0;
+    int row = -1;
+    for(int i =0;i<mat.size();i++){
+      int noOfOnes = findNoOfOnes(mat[i]);
+      // cout<<""<<i<<":"<<noOfOnes<<endl;
+      if(noOfOnes>maxOnes){
+        maxOnes = noOfOnes;
+        row = i;
+      }
+    }
+    return row;
+  }
 };
-
-int main() {
-    Solution sol;
-    vector<vector<int>> mat = {
-        {0, 1, 1},
-        {1, 1, 1},
-        {0, 0, 1}
-    };
-
-    vector<int> result = sol.rowAndMaximumOnes(mat);
-    cout << "Row with maximum ones: " << result[0] << ", Count: " << result[1] << endl;
-
-    return 0;
-}
